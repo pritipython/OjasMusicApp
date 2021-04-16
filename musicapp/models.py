@@ -14,3 +14,7 @@ class Songs(models.Model):
     class Meta:
         verbose_name = 'Album'
         verbose_name_plural = "Albums"
+
+
+        #Hello u there
+        

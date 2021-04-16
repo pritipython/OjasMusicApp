@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("",views.index),
     path('addsong',views.add_songs),
-    path('list',views.list_songs),
+    path('list_songs',views.list_songs),
     path('update/<int:id>',views.update_songs),
     path('delete/<int:id>',views.delete_songs),
 ]

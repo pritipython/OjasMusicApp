@@ -9,24 +9,22 @@ def list_songs(request):
     context={
         'song_list':list_all_songs
     }
-    return render(request,'templates/list_songs_admin.html',context)
+    return render(request,'list_songs_admin.html',context)
 
 def add_songs(request):
-    if request.method=='POST':
-        form = AddSongForm(request.POST)
+    form = AddSongForm()
+    if request.method=="POST":
+        form = AddSongForm(request.POST,request.FILES)
         if form.is_valid():
-            try:
-                form.save()
-                return redirect("/list_songs")
-            except :
-                pass
-    else:
-        form = AddSongForm()
-    return render(request,'addsong.html',{'addsong':form})
+            form.save()
+            return redirect("/list_songs")
+    context={'addsong':form}
+    return render(request,'addsong.html',context)
+
 
 def update_songs(request,id):
-    update_song = Songs.objects.all(id=id)
-    form =  AddSongForm(request.POST,isinstance = update_song)
+    update_song = Songs.objects.get(pk=id)
+    form =  AddSongForm(request.POST,instance = update_song)
     if form.is_valid():
         try:
             form.save()
@@ -36,7 +34,7 @@ def update_songs(request,id):
     return render(request,'updatesong.html',{'song_update':update_song})
 
 def delete_songs(request,id):
-    delete_song = Songs.objects.all(id=id)
+    delete_song = Songs.objects.get(pk=id)
     delete_song.delete()
     return redirect('/list_songs')
 
