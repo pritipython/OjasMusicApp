@@ -11,4 +11,4 @@ class Songs(models.Model):
         return self.album_name
     class Meta:
         verbose_name = 'Album'
-        Verbose_name_plural = "Albums
+        verbose_name_plural = "Albums"
