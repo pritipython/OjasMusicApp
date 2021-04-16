@@ -6,7 +6,9 @@ class Songs(models.Model):
  
     album_name = models.CharField(max_length=100)
     song_name = models.CharField(max_length=100)
-    image_link = models.CharField(max_length=400)
+    album_image_link = models.FileField(upload_to='./Album_Images')
+    upload_file = models.FileField(upload_to='./Songs')
+    
     def __str__(self):
         return self.album_name
     class Meta:
