@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ojas Innovative</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+
+
+</head>
+  <body>
+  <nav class="navbar navbar-default navbar-static-top">
+      <div class="container ojasnav">
+        <ul class="nav navbar-nav">
+          <li><h1>Ojas Geeth</h1> </li>
+          {% if user.is_authenticated %}
+                     {% if request.user.is_staff %}
+                        <li><a>Admin</a></li>
+                      {% endif %}
+                      <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% endif %}
+
+          <li></li>
+        </ul>
+      </div></nav>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container basenav">
+        <ul class="nav navbar-nav">
+
+          {# Some logic on what to display for last item #}
+          {% if user.is_authenticated %}
+           {% if request.user.is_staff %}
+          <li><a class="navbar-link" href="{% url 'admindashboard' %}">admindashboard</a></li>
+          <li><a class="navbar-link" href="">add song</a></li>
+          <li><a class="navbar-link" href="">update songs</a></li>
+          <li><a class="navbar-link" href="">delete songs/Album</a></li>
+          <li><a>{{ request.user }}</a></li>
+            {% else %}
+          <li><a class="navbar-link" href="{% url 'userdashboard' %}">userdashboard</a></li>
+          <li><a class="navbar-link" href="">Browser</a></li>
+          <li><a class="navbar-link" href="">search</a></li>
+          <li><a class="navbar-link" href="">playlist</a></li>
+          <li><a class="navbar-link" href="">account</a></li>
+
+          <ul class="nav navbar-nav">
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="">{{ request.user }}
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="">account settings</a></li>
+          <li><a href="">Reset password</a></li>
+        </ul>
+            {% endif %}
+          {% else %}
+          <li><a class="navbar-link" href="">Register</a></li>
+          <li><a class="navbar-link" href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+          </ul>
+      </div>
+    </nav>
+    <div class="container">
+    {% block body_block %}
+    {% endblock %}
+    </div>
+  </body>
+</html>
