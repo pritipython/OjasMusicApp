@@ -48,7 +48,23 @@
                     <input type="file" name="album_name"  accept=".mp3" value="{{ song_update.upload_file }}" />
                 </div>
             </div>
-            <br><br>
+            <br>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Year :</label>
+                <div class="col-sm-4">
+                    <input type="text" value="{{ song_update.year }}" />
+                </div>
+            </div>
+            <br>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Singer:</label>
+                <div class="col-sm-4">
+                    <input type="text"  value="{{ song_update.singer }}" />
+                </div>
+            </div>
+            <br>
+
+            <br>
             <div class="form-group row">
                 <label class="col-sm-1 col-form-label"></label>
                 <div class="col-sm-4">

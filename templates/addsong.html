@@ -33,7 +33,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Album Image:</label>
                 <div class="col-sm-4">
-                    <input type="file" name="album_image_link" accept=".jpg, .png" value= "{{ addsong.album_image_link }} "/>
+                    {{ addsong.album_image_link }}
                 </div>
             </div>
             <br>
@@ -41,9 +41,27 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Upload SOng:</label>
                 <div class="col-sm-4">
-                    <input type="file" name="album_name" accept=".mp3" value= "{{ addsong.upload_file }}" />
+                    {{ addsong.upload_file }}
+                    <!-- <input type="file" name="album_name" accept=".mp3" value= "" /> -->
                 </div>
             </div>
+            <br>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Album Image:</label>
+                <div class="col-sm-4">
+                    {{ addsong.year }}
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Album Image:</label>
+                <div class="col-sm-4">
+                    {{ addsong.singer }}
+                </div>
+            </div>
+            <br>
+
             <br><br>
             <div class="form-group row">
                 <label class="col-sm-1 col-form-label"></label>
