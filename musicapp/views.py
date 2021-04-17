@@ -24,13 +24,13 @@ def add_songs(request):
 
 def update_songs(request,id):
     update_song = Songs.objects.get(pk=id)
-    form =  AddSongForm(request.POST,instance = update_song)
+    form =  AddSongForm(request.POST,request.FILES,instance = update_song)
+    print("---------------------------------------1",form)
+
     if form.is_valid():
-        try:
-            form.save()
-            return redirect("/list_songs")
-        except :
-            pass
+        print("---------------------------------------2")
+        form.save()
+        return redirect("/list_songs")
     return render(request,'updatesong.html',{'song_update':update_song})
 
 def delete_songs(request,id):

@@ -21,43 +21,43 @@
                 <label class="col-sm-2 col-form-label">Album Name:</label>
                 <div class="col-sm-4">
                     
-                    <input type="text" name="album_name" required maxlength="30" value="{{ song_update.album_name }}" />
+                    <input type="text"  value="{{ song_update.album_name }}" />
                 </div>
             </div>
             <br>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Song Name:</label>
+                <label class="col-sm-3 col-form-label">Song Name:</label>
                 <div class="col-sm-4">
-                    <input type="text" name="song_name" required maxlength="30" value="{{ song_update.song_name }}" />
+                    <input type="text"   value="{{ song_update.song_name }}" />
                 </div>
             </div>
             <br>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Album Image:</label>
+                <label class="col-sm-4 col-form-label">Album Image:</label>
                 <div class="col-sm-4">
                     
-                    <input type="file" name="album_image_link" accept=".jpg, .png" value="{{ song_update.album_image_link }}" />
+                    <input type="file"   value="{{ song_update.album_image_link }}" />
 
                 </div>
             </div>
             <br>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Upload Song:</label>
+                <label class="col-sm-5 col-form-label">Upload Song:</label>
                 <div class="col-sm-4">
-                    <input type="file" name="album_name"  accept=".mp3" value="{{ song_update.upload_file }}" />
+                    <input type="file"  value="{{ song_update.upload_file }}" />
                 </div>
             </div>
             <br>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Year :</label>
+                <label class="col-sm-6 col-form-label">Year :</label>
                 <div class="col-sm-4">
-                    <input type="text" value="{{ song_update.year }}" />
+                    <input type="number" value="{{ song_update.year }}" />
                 </div>
             </div>
             <br>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Singer:</label>
+                <label class="col-sm-7xx col-form-label">Singer:</label>
                 <div class="col-sm-4">
                     <input type="text"  value="{{ song_update.singer }}" />
                 </div>
