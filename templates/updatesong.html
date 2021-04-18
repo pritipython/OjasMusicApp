@@ -36,7 +36,7 @@
                 <label class="col-sm-4 col-form-label">Album Image:</label>
                 <div class="col-sm-4">
                     
-                    <input type="file"   value="{{ song_update.album_image_link }}" />
+                    <input type="file"   value="{{ song_update.album_image_link.url }}" />
 
                 </div>
             </div>
@@ -45,7 +45,7 @@
             <div class="form-group row">
                 <label class="col-sm-5 col-form-label">Upload Song:</label>
                 <div class="col-sm-4">
-                    <input type="file"  value="{{ song_update.upload_file }}" />
+                    <input type="file"  value="{{ song_update.upload_file.url }}" />
                 </div>
             </div>
             <br>

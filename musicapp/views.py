@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import AddSongForm
 from .models import Songs
 from django.conf import settings
@@ -26,12 +26,14 @@ def add_songs(request):
 
 def update_songs(request,id):
     update_song = Songs.objects.get(pk=id)
-    form =  AddSongForm(request.POST,request.FILES,instance = update_song)
-    print("---------------------------------------1",form)
-    if form.is_valid():
-        print("---------------------------------------2")
-        form.save()
-        return redirect("/list_songs")
+    print(update_song)
+    if request.method == 'POST':
+        form =  AddSongForm(request.POST,request.FILES,instance = update_song)
+        print("/n",form)
+        if form.is_valid():
+            print("valid")
+            form.save()
+            return redirect("/list_songs")
     return render(request,'updatesong.html',{'song_update':update_song})
 
 def delete_songs(request,id):
