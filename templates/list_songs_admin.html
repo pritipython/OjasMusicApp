@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Music Records</title>
+</head>
+
+<body>
+    <table class="table table-striped table-bordered table-sm">
+        <thead class="thead-dark">
+            <tr>
+                <th>Song ID</th>
+                <th>ALbum Name</th>
+                <th>Song Name</th>
+                <th>Album Image</th>
+                <th>Song</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for song in song_list %}
+            <tr>
+                <td>{{ song.id }}</td>
+                <td>{{ song.album_name }}</td>
+                <td>{{ song.song_name }}</td>
+                <td><img src="{{ song.album_image_link }} " alt="Album Image" width="100" height="100"></td>
+                <td><audio controls autoplay>
+                    <source src="{{ song.upload_file }}" type="audio/ogv">
+                    <source src="{{ song.upload_file }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                </td>
+                <td>
+                    <a href="/update/{{ song.id }}"><span class="glyphicon glyphicon-pencil">Update</span></a>
+                    <a href="/delete/{{ song.id }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <center><a href="/addsong" class="btn btn-primary">Add New Song</a></center>
+</body>
+
+</html>
