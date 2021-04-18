@@ -18,7 +18,7 @@ def login_request(request):
 
         login(request, user)
         # messages.info(request, f"You are now logged in  as {user}")
-        return redirect('signup')
+        return render(request, 'list_songs_admin.html', context=context)
     else:
         print(form.errors)
         # messages.error(request, 'Username or Password is Incorrect! ')
@@ -43,5 +43,4 @@ def logout_request(request):
     logout(request)
     # messages.info(request, "Logged out successfully!")
     return redirect('signup')
-
     

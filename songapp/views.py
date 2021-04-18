@@ -41,3 +41,10 @@ def delete_songs(request,id):
     
 def index(request):
     return render(request,'base.html')
+
+def all_songs(request):
+    listall = Songs.objects.all()
+    context={
+        'song_list':listall
+    }
+    return render(request,'all_songs.html',context)
