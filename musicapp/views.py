@@ -1,13 +1,15 @@
 from django.shortcuts import render,redirect
 from .forms import AddSongForm
 from .models import Songs
+from django.conf import settings
 
 # Create your views here.
 from .models import Songs
 def list_songs(request):
     list_all_songs = Songs.objects.all()
     context={
-        'song_list':list_all_songs
+        'song_list':list_all_songs,
+        'media_url':settings.MEDIA_URL
     }
     return render(request,'list_songs_admin.html',context)
 
@@ -26,7 +28,6 @@ def update_songs(request,id):
     update_song = Songs.objects.get(pk=id)
     form =  AddSongForm(request.POST,request.FILES,instance = update_song)
     print("---------------------------------------1",form)
-
     if form.is_valid():
         print("---------------------------------------2")
         form.save()
