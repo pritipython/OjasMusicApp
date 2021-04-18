@@ -28,7 +28,8 @@ urlpatterns = [
     path('logout/', mv.logout_request, name='logout'),
     path("",sv.index),
     path('addsong',sv.add_songs),
-    path('list_songs',sv.list_songs),
+    path('list_songs',sv.list_songs_user),
+    path('list_songs_admin',sv.list_songs_admin),
     path('update/<int:id>',sv.update_songs),
     path('delete/<int:id>',sv.delete_songs),
     path('allsongs/',sv.all_songs)

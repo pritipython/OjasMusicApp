@@ -11,12 +11,12 @@
     <tr> 
         <td>{{ item.upload_file }}</td><br>
         <audio controls>
-            <source src="{{ item.upload_file }}" type="audio/ogg">
-            <source src="{{ item.upload_file }}" type="audio/mpeg">
+            <source src="{{ item.upload_file.url }}" type="audio/ogg">
+            <source src="{{ item.upload_file.url }}" type="audio/mpeg">
           Your browser does not support the audio element.
           </audio>
         
-        <td> <img src="{{ item.album_image_link }}" alt="Girl in a jacket" width="500" height="600"></td>
+        <td> <img src="{{ item.album_image_link.url }}" alt="Album_image" width="500" height="600"></td>
     </tr>
     {% endfor %}
 </table>
