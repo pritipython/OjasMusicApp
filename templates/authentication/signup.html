@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_messages %}
+{% block body %}
+
+<!DOCTYPE html>
+<!-- saved from url=(0052)https://colorlib.com/etc/regform/colorlib-regform-8/ -->
+<html lang="en">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Sign Up Form by Colorlib</title>
+      <!--<link rel="stylesheet" href="style.css">-->
+   </head>
+<style>
+list-type-ulli {
+	list-style-type: none;
+	margin: 0;
+	padding: 0
+}
+img {
+	max-width: 100%;
+	height: auto
+}
+
+figure {
+	margin: 0
+}
+
+p {
+	margin-bottom: 0;
+	font-size: 15px;
+	color: #777
+}
+
+h2 {
+	line-height: 1.66;
+	margin: 0;
+	padding: 0;
+	font-weight: 900;
+	color: #222;
+	font-family: montserrat;
+	font-size: 24px;
+	text-transform: uppercase;
+	text-align: center;
+	margin-bottom: 40px
+}
+body {
+	font-size: 14px;
+	line-height: 1.8;
+	color: #222;
+	font-weight: 400;
+	font-family: montserrat;
+	background-image: url(../../images/background_teens.jpg) ;
+	background-repeat: no-repeat;
+	background-size: cover;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	-ms-background-size: cover;
+	background-position: center center;
+
+}
+
+.container1 {
+	width: 660px;
+	position: relative;
+	margin: 0 auto
+}
+
+.signup-content {
+	background: #fff;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-o-border-radius: 10px;
+	-ms-border-radius: 10px;
+	padding: 50px 85px
+}
+
+.form-group {
+	overflow: hidden;
+	margin-bottom: 20px
+}
+
+.form-control {
+	width: 100%;
+	border: 1px solid #ebebeb;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+	padding: 17px 20px;
+	box-sizing: border-box;
+	font-size: 14px;
+	font-weight: 500;
+	color: #222
+
+
+}
+.form-control:focus {
+    column-gap: 40px;
+	border: 2px solid transparent;
+	-webkit-border-image-source: -webkit-linear-gradient(to right, #9face6, #74ebd5);
+	-moz-border-image-source: -moz-linear-gradient(to right, #9face6, #74ebd5);
+	-o-border-image-source: -o-linear-gradient(to right, #9face6, #74ebd5);
+	border-image-source: linear-gradient(to right, #9face6, #74ebd5);
+	-webkit-border-image-slice: 1;
+	border-image-slice: 1;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+	background-origin: border-box;
+	background-clip: content-box, border-box
+}
+.button1 {
+	width: 100%;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+	padding: 17px 20px;
+	box-sizing: border-box;
+	font-size: 14px;
+	font-weight: 700;
+	color: #fff;
+	text-transform: uppercase;
+	border: none;
+	background-image: -moz-linear-gradient(to left, #74ebd5, #9face6);
+	background-image: -ms-linear-gradient(to left, #74ebd5, #9face6);
+	background-image: -o-linear-gradient(to left, #74ebd5, #9face6);
+	background-image: -webkit-linear-gradient(to left, #74ebd5, #9face6);
+	background-image: linear-gradient(to left, #74ebd5, #9face6)
+}
+.loginhere {
+	color: #555;
+	font-weight: 500;
+	text-align: center;
+	margin-top: 91px;
+	margin-bottom: 5px
+}
+
+.loginhere-link {
+	font-weight: 700;
+	color: #222
+}
+
+
+
+@media screen and (max-width:768px) {
+	.container {
+		width: calc(100% - 40px);
+		max-width: 100%
+	}
+}
+
+@media screen and (max-width:480px) {
+	.signup-content {
+		padding: 50px 25px
+	}
+}
+</style>
+
+   <body>
+      <div class="main">
+         <section class="signup">
+            <div class="container1">
+               <div class="signup-content">
+                  <form method="POST" id="signup-form" class="signup-form">
+                     <h2 class="form-title">Create account</h2>
+                     <div class="form-group">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                              <button class="button1" type="submit">Sign Up</button>
+                     </div>
+                        </form>
+               </div>
+            </div>
+         </section>
+      </div>
+   </body>
+{% endblock body %}
+</html>

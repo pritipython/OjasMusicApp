@@ -21,9 +21,12 @@ from musicapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', views.loginpage, name='login'),
-    path("logout/", views.logout_user, name="logout"),
     path("userdashboard/", views.userdashboard, name="userdashboard"),
     path("admindashboard/", views.admindashboard, name="admindashboard"),
-    ]
+    path('login/', views.login_request, name='login'),
+    path('signup/', views.signup_request, name='signup'),
+    path('logout/', views.logout_request, name='logout'),
+    path('settings/', views.accountSettings, name='settings'),
+
+]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
