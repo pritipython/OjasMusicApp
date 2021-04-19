@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %} OjasMusicApp | {{ title }} {% endblock title %}
+{% block body %}
+<table>
+    <tr>
+        <th>Field song_name</th>
+        ...
+        <th>Field album_image_link</th>
+    </tr>
+    {% for item in song_list %}
+    <tr> 
+        <td>{{ item.upload_file }}</td><br>
+        <audio controls>
+            <source src="{{ item.upload_file.url }}" type="audio/ogg">
+            <source src="{{ item.upload_file.url }}" type="audio/mpeg">
+          Your browser does not support the audio element.
+          </audio>
+        
+        <td> <img src="{{ item.album_image_link.url }}" alt="Album_image" width="500" height="600"></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock body %}
