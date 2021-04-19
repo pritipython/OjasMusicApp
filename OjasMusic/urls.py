@@ -27,6 +27,10 @@ urlpatterns = [
     path('signup/', views.signup_request, name='signup'),
     path('logout/', views.logout_request, name='logout'),
     path('settings/', views.accountSettings, name='settings'),
+    path('playlist/', views.list_their_playlist, name='playlist'),
+    path('playlist/<str:playlist_name>/', views.playlist_songs, name='playlist_songs'),
+    path('list/', views.list_songs_user, name='list'),
+    path('create/', views.create_playlist, name='create'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

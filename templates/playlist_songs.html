@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %} Playlist Songs {% endblock title %}
+{% block body %}
+
+<center>
+  <h3>Playlist-{{playlist_name}}</h3>
+</center>
+<table class="table table-hover table-primary">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Song Name</th>
+      <th scope="col">Album</th>
+      <th scope="col">Singer</th>
+      <th scope="col">img</th>
+      <th scope="col">Action</th>
+      <th scope="col">Remove from playlist</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% if songs %}
+    {% for song in songs %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td><a href="">{{song.song_name}}</a></td>
+      <td>{{song.album_name}}</td>
+      <td>{{song.singer}}</td>
+      <td> <img src="{{ song.album_image_link.url }}" alt="Album_image" width="40" height="40"></td>
+      <td>
+        <audio controls>
+          <source src="{{ song.upload_file.url }}" type="audio/mpeg">
+        </audio>
+      </td>
+      <td>
+        <form method="post">
+          {% csrf_token %}
+          <input class="btn btn-primary" type="submit" value="Remove" name={{song.id}}>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+
+
+{% endblock body %}

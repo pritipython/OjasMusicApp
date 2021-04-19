@@ -1,8 +1,14 @@
 from django import forms
-from .models import GeethUsers
+from .models import GeethUsers, Songs, Playlist
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
+
+
+class PlaylistForm(forms.ModelForm):
+    class Meta:
+        model = Playlist
+        fields = '__all__'
 
 
 class GeethUsersForm(forms.ModelForm):

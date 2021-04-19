@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_users
-from .forms import GeethUsersForm, RegistrationForm, UserLoginForm
-from .models import GeethUsers
+from .forms import GeethUsersForm, RegistrationForm, UserLoginForm,PlaylistForm
+from .models import GeethUsers,Songs,Playlist
 
 
 @unauthenticated_user
@@ -86,4 +86,42 @@ def accountSettings(request):
     return render(request, 'accountSettings.html', context)
 
 
+def list_their_playlist(request):
+    playlists = Playlist.objects.filter(user=request.user).values('playlist_name').distinct
+    print(playlists)
+    context = {'playlists': playlists}
+    return render(request, 'playlist.html', context=context)
 
+
+def playlist_songs(request, playlist_name):
+    songs = Songs.objects.filter(playlist__playlist_name=playlist_name, playlist__user=request.user).distinct()
+
+    if request.method == "POST":
+        song_id = list(request.POST.keys())[1]
+        playlist_song = Playlist.objects.filter(playlist_name=playlist_name, song__id=song_id, user=request.user)
+        playlist_song.delete()
+        messages.success(request, "Song removed from playlist!")
+
+    context = {'playlist_name': playlist_name, 'songs': songs}
+
+    return render(request, 'playlist_songs.html', context=context)
+
+
+def create_playlist(request):
+    user = request.user
+    form = PlaylistForm()
+    if request.method == 'POST':
+        form = PlaylistForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+    context = {'form': form}
+    return render(request, 'createplaylist.html', context=context)
+
+
+
+def list_songs_user(request):
+    list_songs = Songs.objects.all()
+    context = {
+        'song_list': list_songs
+    }
+    return render(request,  'list_songs_user.html', context)
