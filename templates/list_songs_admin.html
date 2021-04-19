@@ -35,7 +35,7 @@
             {% for song in song_list %}
             <tr scope ="row">
                 <td>{{ song.id }}</td>
-                <td>{{ song.album_name }}</td>
+                <td><a href="/album_view_songs/{{ song.album_name }}">{{ song.album_name }}</a></td>
                 <td>{{ song.song_name }}</td>
                 <td><img src="{{ song.album_image_link.url }} " alt="Album Image" width="100" height="100"></td>
                 <td><audio controls autoplay>

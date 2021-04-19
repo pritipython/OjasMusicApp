@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 from .models import Songs
-
+from django.db.models import Q
 
 def list_songs_admin(request):
     list_all_songs = Songs.objects.all()
@@ -55,7 +55,6 @@ def delete_songs(request,id):
     delete_song = Songs.objects.get(pk=id)
     delete_song.delete()
     return redirect('/list_songs')
-
     
 def index(request):
     return render(request,'base.html')
@@ -67,4 +66,20 @@ def all_songs(request):
     }
     return render(request,'all_songs.html',context)
 
-# def album_view(request,)
+def album_view_songs(request,title):
+    album_songs = Songs.objects.filter(Q(album_name__iexact=title))
+    context={
+        'album_view':album_songs
+    }
+        
+    return render(request,'album_view_songs.html',context)
+
+def album_view(request):
+    albums = (Songs.objects.values('album_name').distinct())
+    
+    context = {
+        'album':albums
+    }
+    
+
+    return render(request, 'album_view.html',context)

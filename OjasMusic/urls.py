@@ -33,7 +33,8 @@ urlpatterns = [
     path('update/<int:id>',sv.update_songs),
     path('delete/<int:id>',sv.delete_songs),
     path('allsongs/',sv.all_songs),
-    # path('album_view/<>',)
+    path('album_view_songs/<slug:title>',sv.album_view),
+    path('album_view/',sv.album_view),
 
 ]
 
