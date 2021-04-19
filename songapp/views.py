@@ -66,3 +66,5 @@ def all_songs(request):
         'song_list':listall
     }
     return render(request,'all_songs.html',context)
+
+# def album_view(request,)
