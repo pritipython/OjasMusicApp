@@ -1,76 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block title %} OjasMusicApp | {{ title }} {% endblock title %}
+{% block body %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
-<body>
-    <form method="POST" enctype="multipart/form-data" >
-        {% csrf_token %}
-        <div class="container">
-            <br>
-            <div class="form-group row">
-                <label class="col-sm-1 col-form-label"></label>
-                <div class="col-sm-4">
-                    <h3>Enter Details</h3>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Album Name:</label>
-                <div class="col-sm-4">
-                    {{ addsong.album_name }}
-                </div>
-            </div>
-            <br>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Song Name:</label>
-                <div class="col-sm-4">
-                    {{ addsong.song_name }}
-                </div>
-            </div>
-            <br>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Album Image:</label>
-                <div class="col-sm-4">
-                    {{ addsong.album_image_link }}
-                </div>
-            </div>
-            <br>
-
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Upload SOng:</label>
-                <div class="col-sm-4">
-                    {{ addsong.upload_file }}
-                    <!-- <input type="file" name="album_name" accept=".mp3" value= "" /> -->
-                </div>
-            </div>
-            <br>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Year:</label>
-                <div class="col-sm-4">
-                    {{ addsong.year }}
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Singer:</label>
-                <div class="col-sm-4">
-                    {{ addsong.singer }}
-                </div>
-            </div>
-            <br>
-
-            <br><br>
-            <div class="form-group row">
-                <label class="col-sm-1 col-form-label"></label>
-                <div class="col-sm-4">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </div>
+<div class="container offset col-md-4 border border-secondary p-4 mt-5 bg-light">
+   <form method="POST" enctype="multipart/form-data" >
+      {% csrf_token %}
+        <h3 class="text-center">Add Song Details</h3>
+        <table class="table border-0 center">
+            <tr><td>Album Name:</td><td>{{ addsong.album_name }}</td></tr>
+            <tr><td>Song Name:</td><td>{{ addsong.song_name }}</td></tr>
+            <tr><td>Album Image:</td><td>{{ addsong.album_image_link }} </td></tr>
+            <tr><td>Upload Song:</td><td> {{ addsong.upload_file }}</td></tr>
+            <tr><td>Year:</td><td> {{ addsong.year }} </td></tr>
+            <tr><td>Singer:</td><td>{{ addsong.singer }}</td></tr>
+        </table>
+         <button type="submit" class="btn btn-secondary btn-lg btn-block">Submit</button>
     </form>
-</body>
-
-</html>
+</div>
+{% endblock body %}
