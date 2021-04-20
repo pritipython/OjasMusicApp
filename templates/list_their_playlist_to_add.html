@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
+{% block title %} add_playlist {% endblock title %}
 {% block body %}
-
-<br>
 <div class="container">
 
   <header class="section-heading">
@@ -15,9 +14,7 @@
     <div class="col-md-3">
       <div class="thumbnail">
         <center>
-        <h4 style="margin-left:-50px"><a href="{% url 'playlist_songs' playlist.playlist_name %}">{{playlist.playlist_name}}</h4>
-        </a>
-
+          <h4 style="margin-left:-50px"><a href="{% url 'playlist_songs' playlist.playlist_name %}">{{playlist.playlist_name}}</a></h4>
         </center>
       </div>
     </div>
@@ -28,4 +25,4 @@
   </div>
 
 </div>
-{% endblock body %}
+{% end block %}

@@ -31,6 +31,7 @@ urlpatterns = [
     path('playlist/<str:playlist_name>/', views.playlist_songs, name='playlist_songs'),
     path('list/', views.list_songs_user, name='list'),
     path('create/', views.create_playlist, name='create'),
+    path('show/', views.list_their_playlist_to_add, name='show'),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

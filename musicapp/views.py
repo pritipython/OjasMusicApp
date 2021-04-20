@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import Group, User
-from django.http import HttpResponse
+from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_users
-from .forms import GeethUsersForm, RegistrationForm, UserLoginForm,PlaylistForm
-from .models import GeethUsers,Songs,Playlist
+from .forms import GeethUsersForm, RegistrationForm, UserLoginForm, PlaylistForm
+from .models import GeethUsers, Songs, Playlist
 
 
 @unauthenticated_user
@@ -107,6 +106,15 @@ def playlist_songs(request, playlist_name):
     return render(request, 'playlist_songs.html', context=context)
 
 
+def list_their_playlist_to_add(request):
+    play = Playlist.objects.filter(user=request.user).values('playlist_name').distinct()
+    print(play)
+    context = {'play': play}
+    return render(request, 'list_their_playlist_to_add.html', context=context)
+
+# def add_song_to_playlist(request):
+
+
 def create_playlist(request):
     user = request.user
     form = PlaylistForm()
@@ -116,7 +124,6 @@ def create_playlist(request):
             form.save()
     context = {'form': form}
     return render(request, 'createplaylist.html', context=context)
-
 
 
 def list_songs_user(request):
