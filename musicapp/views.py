@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_users
 from .forms import GeethUsersForm, RegistrationForm, UserLoginForm, PlaylistForm
 from .models import GeethUsers, Songs, Playlist
+from django.db.models import Q
 
 
 @unauthenticated_user
@@ -85,16 +86,37 @@ def accountSettings(request):
     return render(request, 'accountSettings.html', context)
 
 
+# ------------------------------------------------playlist-----
+# create playlist model first with one playlist same so that auto id will be generated
+# then again migrate with user and song field
+
+# sitarams page of list of song or list of album songs we implement link to that song at 26th line
+# list all songs good for convinent design
+def list_songs_user(request):
+    playlists = Playlist.objects.filter(user=request.user).values('playlist_name').distinct()
+    list_songs = Songs.objects.all()
+    context = {
+        'song_list': list_songs,
+        'playlists': playlists
+    }
+    return render(request, 'list_songs_user.html', context)
+
+
+# here both views and html should be added
+# playlist of that particular user on listing data for only display
 def list_their_playlist(request):
-    playlists = Playlist.objects.filter(user=request.user).values('playlist_name').distinct
+    playlists = Playlist.objects.filter(user=request.user).values('playlist_name').distinct()
     print(playlists)
     context = {'playlists': playlists}
     return render(request, 'playlist.html', context=context)
 
+# in base .html add playlist url link
 
+
+# here both views and html should be added
+# playlist song only for display
 def playlist_songs(request, playlist_name):
     songs = Songs.objects.filter(playlist__playlist_name=playlist_name, playlist__user=request.user).distinct()
-
     if request.method == "POST":
         song_id = list(request.POST.keys())[1]
         playlist_song = Playlist.objects.filter(playlist_name=playlist_name, song__id=song_id, user=request.user)
@@ -106,29 +128,34 @@ def playlist_songs(request, playlist_name):
     return render(request, 'playlist_songs.html', context=context)
 
 
-def list_their_playlist_to_add(request):
-    play = Playlist.objects.filter(user=request.user).values('playlist_name').distinct()
-    print(play)
-    context = {'play': play}
+# list their playlist data for adding purpose
+def list_their_playlist_to_add(request, name):
+    if request.method == 'POST':
+        username = request.POST.get('playlist_name')
+        s = Songs.objects.get(song_name=name)
+        e = Playlist.objects.create(user=request.user, playlist_name=username, song=s)
+        e.save()
+    play_user = Playlist.objects.filter(user=request.user).values('playlist_name').distinct()
+    context = {'play_user': play_user, 'name': name}
     return render(request, 'list_their_playlist_to_add.html', context=context)
 
-# def add_song_to_playlist(request):
+
+# add song to their playlist
+def addmethod(request, playlist_name, song_name):
+    s = Songs.objects.get(song_name=song_name)
+    w = Playlist.objects.create(user=request.user, playlist_name=playlist_name, song=s)
+    w.save()
+    return redirect("list")
 
 
-def create_playlist(request):
-    user = request.user
-    form = PlaylistForm()
-    if request.method == 'POST':
-        form = PlaylistForm(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-    context = {'form': form}
-    return render(request, 'createplaylist.html', context=context)
+# to delete entire playlist
+def delete_playlist(request, playlist_name):
+    # filtering user and playlist name we delete entire playlist should no how to install Q from sita ram
+    # play = Playlist.objects.filter(Q(user=request.user) && Q(playlist_name=playlist)
+    return redirect('playlist')
 
 
-def list_songs_user(request):
-    list_songs = Songs.objects.all()
-    context = {
-        'song_list': list_songs
-    }
-    return render(request,  'list_songs_user.html', context)
+# if time there implement dropdown  for add to playlist for listing playlist
+# then favoriates
+
+# then search bar

@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% block title %} add_playlist {% endblock title %}
 {% block body %}
+<style>.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}</style>
 <div class="container">
 
   <header class="section-heading">
@@ -9,20 +13,39 @@
   <hr>
 
   <div class="row">
-    {% if playlists %}
-    {% for playlist in playlists %}
+    {% if play_user %}
+    {% for playlist in play_user %}
     <div class="col-md-3">
       <div class="thumbnail">
         <center>
-          <h4 style="margin-left:-50px"><a href="{% url 'playlist_songs' playlist.playlist_name %}">{{playlist.playlist_name}}</a></h4>
+          <h4 style="margin-left:-50px"><a href="/addmethod/{{playlist.playlist_name}}/{{name}}">{{playlist.playlist_name}}</a></h4>
         </center>
       </div>
     </div>
+
+
     {% endfor %}
+        <div class="col-md-3">
+      <div class="thumbnail">
+        <center>
+          <form method="POST" action="">
+
+          {% csrf_token %}
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input type="text" name="playlist_name" placeholder="create a playlist..." class="form-control">
+						</div>
+                        <input class="btn login_btn" type="submit" value="add song to playlist">
+          </form>
+        </center>
+      </div>
+    </div>
     {% else %}
     <p>There isn't any playlist! First create new playlist.</p>
     {% endif %}
   </div>
 
 </div>
-{% end block %}
+{% endblock body %}

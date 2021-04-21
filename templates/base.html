@@ -139,44 +139,15 @@
         <div class="container">
             <h1><a href="" class="navbar-brand"><strong style="color:white">Ojas Geet</strong></a></h1>
             <div class="collapse navbar-collapse">
-                 {# Some logic on what to display for last item #}
-
                 {% if request.user.is_authenticated  %}
                         {% if request.user.is_staff %}
                           <a class="btn btn-outline-light mt-2 mx-1" href="{% url 'admindashboard' %}">admindashboard</a>
-                          <a class="btn btn-outline-light mt-2 mx-1" href="">add song</a>
-                          <a class="btn btn-outline-light mt-2 mx-1" href="">update songs</a>
-                          <a class="btn btn-outline-light mt-2 mx-1" href="">delete songs/Album</a>
-
-                          <!--<a class="btn btn-outline-light mt-2 mx-1" href="{% url 'settings' %}">account</a>-->
-                          <div class="btn-group mt-2 mx-1">
-                              <a type="button" href="" class="btn btn-outline-light">{{ request.user }}</a>
-                              <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <span class="sr-only">Toggle Dropdown</span>
-                              </button>
-                              <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{% url 'settings' %}">settings</a>
-                                    <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="">Favourite Songs</a>
-                              </div>
+                            <a class="btn btn-outline-light mt-2 mx-1" href="{% url 'settings' %}">account</a>-->
                         {% else %}
                           <a class="btn btn-outline-light mt-2 mx-1" href="{% url 'userdashboard' %}">userdashboard</a>
-                          <a class="btn btn-outline-light mt-2 mx-1" href="">Browser</a>
-                          <a class="btn btn-outline-light mt-2 mx-1" href="">search</a>
+                          <a class="btn btn-outline-light mt-2 mx-1" href="{%url 'list' %}">list</a>
                           <a class="btn btn-outline-light mt-2 mx-1" href="{% url 'playlist' %}">playlist</a>
                           <a class="btn btn-outline-light mt-2 mx-1" href="{% url 'settings' %}">account</a>
-
-                          <div class="btn-group mt-2 mx-1">
-                              <a type="button" href="" class="btn btn-outline-light">settings</a>
-                              <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <span class="sr-only">Toggle Dropdown</span>
-                              </button>
-                              <div class="dropdown-menu">
-                                <a class="dropdown-item" href="{% url 'settings' %}">account</a>
-                                    <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="">forgot password</a>
-                              </div>
-                          </div>
                         {% endif %}
                 {% endif %}
             </div>

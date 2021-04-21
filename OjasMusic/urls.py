@@ -28,10 +28,11 @@ urlpatterns = [
     path('logout/', views.logout_request, name='logout'),
     path('settings/', views.accountSettings, name='settings'),
     path('playlist/', views.list_their_playlist, name='playlist'),
-    path('playlist/<str:playlist_name>/', views.playlist_songs, name='playlist_songs'),
+    path('playlist_songs/<str:playlist_name>/', views.playlist_songs, name='playlist_songs'),
     path('list/', views.list_songs_user, name='list'),
-    path('create/', views.create_playlist, name='create'),
-    path('show/', views.list_their_playlist_to_add, name='show'),
+    #path('create/', views.create_playlist, name='create'),
+    path('show/<str:name>', views.list_their_playlist_to_add, name='show'),
+    path('addmethod/<str:playlist_name>/<str:song_name>', views.addmethod, name="addmethod")
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
