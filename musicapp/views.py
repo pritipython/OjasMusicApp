@@ -97,7 +97,7 @@ def list_songs_user(request):
     list_songs = Songs.objects.all()
     context = {
         'song_list': list_songs,
-        'playlists': playlists
+        'playlists': playlists,
     }
     return render(request, 'list_songs_user.html', context)
 

@@ -23,6 +23,16 @@
                                 <source src="{{ song.upload_file.url }}" type="audio/mpeg">
                                 Your browser does not support the audio element.
                             </audio>
+                            <form>
+                                
+                                <label> Add to playlist </label>
+                                
+                                <select>
+                                    {% for item in playlists %}
+                                    <option href="/addmethod/{{playlist.playlist_name}}/{{name}}"><a >{{ item.playlist_name }} </a> </option>
+                                    {% endfor %}
+                                </select>
+                            </form>
                             <p><a href="/show/{{song.song_name}}"  class="btn btn-Lynch">add to playlist</a></p>
 
 
