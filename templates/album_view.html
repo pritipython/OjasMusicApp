@@ -1,0 +1,12 @@
+<table>
+    <tr>
+        <th>Album name</th>
+        <th>Album_image_link</th>
+    </tr>
+    {% for item in album %}
+    <tr> 
+        <td>{{ item }}</td><br>
+        <td> <img src="{{ item }}" alt="Album_image" width="500" height="600"></td>
+    </tr>
+    {% endfor %}
+</table>
