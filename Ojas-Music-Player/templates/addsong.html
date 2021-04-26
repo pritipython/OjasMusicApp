@@ -1,0 +1,66 @@
+{% extends 'adminbase.html' %}
+{% block title %} OjasMusicApp | {{ title }} {% endblock title %}
+{% block adminbody %}
+<style>
+   .container{
+      width:500px;
+   }
+</style>
+<div class = "container">
+
+      <form method="POST" enctype="multipart/form-data" >
+         {% csrf_token %}
+<table class="table table-hover">
+<thead>
+<tr>
+<td colspan="3"><b>Add Details</b></td>
+
+
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Album Name</td>
+<td>:</td>
+
+<td>{{ addsong.album_name }}</td>
+</tr>
+<tr>
+<td>Song Name</td>
+<td>:</td>
+
+<td>{{ addsong.song_name }}</td>
+</tr>
+<tr>
+<td>Album Image</td>
+<td>:</td>
+
+<td>{{ addsong.album_image_link }}</td>
+</tr>
+<tr>
+<td>Upload Song</td>
+<td>:</td>
+
+<td>{{ addsong.upload_file }}</td>
+</tr>
+<tr>
+<td>Year</td>
+<td>:</td>
+
+<td>{{ addsong.year }}</td>
+</tr>
+<tr>
+<td>Singer</td>
+<td>:</td>
+
+<td>{{ addsong.singer }}</td>
+</tr>
+<tr><td><button type="submit" class="btn btn-primary">Submit</button></td></tr>
+
+</tbody>
+</table>
+</form>
+  
+</div>
+</div>
+{% endblock adminbody %}
