@@ -1,0 +1,137 @@
+{% extends 'userbase.html' %}
+{% load static %}
+{% block userbody %}
+ <title>User list Songs</title>
+ <style>
+            .btn-Lynch {
+                width: 45px;
+                height: 45px;
+                background-color: #6C7A89;
+                border-bottom: 3px solid #818D9B;
+                color: white;
+                margin: 5px;
+                border-radius: 20px;
+
+            }
+
+            .glyphicon {
+                color: white;
+            }
+
+            &:hover {
+                background-color: #95A5A6;
+                color: white;
+            }
+            }
+
+            #add_song {
+                border-radius: 0px;
+            }
+
+            #add_song:hover {
+                transition-property: border-radius;
+                transition-duration: 1s;
+                transition-delay: .1s;
+                border-radius: 35px;
+            }
+            img {
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 5px;
+                width: 100px;
+                height:100px;
+                }
+            .card-img-top {
+                margin-top:10%;
+                width: 50%;
+            }
+            .center {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 50%;
+            }
+            
+            .baseBlock {
+                margin: 25px 0px 35px 0px;
+                padding: 0 0 15px 0px;
+                border-radius: 5px;
+                overflow: hidden;
+                background: #fff;
+                -moz-transition: all 0.3s cubic-bezier(0.4, 0, 1, 1);
+                -o-transition: all 0.3s cubic-bezier(0.4, 0, 1, 1);
+                transition: all 0.3s cubic-bezier(0.4, 0, 1, 1);
+            }
+
+            .baseBlock:hover {
+                background-color: #EFECEB;
+                border:2px solid gray;
+                -webkit-transform: translate(0, -8px);
+                -moz-transform: translate(0, -8px);
+                -ms-transform: translate(0, -8px);
+                -o-transform: translate(0, -8px);
+                transform: translate(0, -8px);
+                box-shadow: 0 40px 40px rgba(0, 0, 0, 0.2);
+            }
+    #cover_image{
+        height : 500px;
+        width :1080px;
+
+    }
+    
+            audio{
+                width:250px;
+                margin-left:15px;
+            }
+            .p{
+                display:inline;
+                padding:5px;
+                word-wrap: break-word;
+                }
+                .container2{
+  position: relative;
+  text-align: center;
+  color: white;
+}
+                .centered {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  color:#000;
+}
+.container{
+}
+</style>
+<div class="container mt-5">
+        <h1 class="second"><span>My Favourites</span></h1>
+        <hr/>
+            {% for song in myfav_songs %}           
+                <div class="col-md-3 m-4">
+                    <div class="card baseBlock" style="width: 28rem;">
+                    <img class="card-img-top p-1 mt-3 center" src="{{ song.album_image_link.url }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>Album  -  <a href="../album_view_songs/{{ song.album_name }}">{{ song.album_name }}</a></b></h5>
+                            <p class="card-text text-center">Song -  {{ song.song_name }}</p>
+                            
+                            <audio controls >
+                                <source src="{{ song.upload_file.url }}" type="audio/ogv">
+                                <source src="{{ song.upload_file.url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                            <a class="btn btn-danger mt-2 mx-1 center" href="delete/{{ song.id }}"></span>Remove</a>
+
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+            <div class="container2">
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80" alt="Snow" style="width:100%;height:500px">
+
+  <div class="centered"><h1><b>No Music Available</b></h1></div>
+</div>
+            {% endfor%}
+        </tbody>
+    </table>
+</div>
+{% endblock userbody %}
