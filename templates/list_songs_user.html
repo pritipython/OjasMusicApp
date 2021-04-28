@@ -1,0 +1,194 @@
+{% extends 'userbase.html' %}
+{% load static %}
+{% block userbody %}
+ <title>User list Songs</title>
+ <style>
+            .btn-Lynch {
+                width: 45px;
+                height: 45px;
+                background-color: #6C7A89;
+                border-bottom: 3px solid #818D9B;
+                color: white;
+                margin: 5px;
+                border-radius: 20px;
+
+            }
+
+            .glyphicon {
+                color: white;
+            }
+
+            &:hover {
+                background-color: #95A5A6;
+                color: white;
+            }
+            }
+
+            #add_song {
+                border-radius: 0px;
+            }
+
+            #add_song:hover {
+                transition-property: border-radius;
+                transition-duration: 1s;
+                transition-delay: .1s;
+                border-radius: 35px;
+            }
+            img {
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 5px;
+                width: 100px;
+                height:100px;
+                }
+                
+            .card-img-top {
+                margin-top:10%;
+                width: 50%;
+
+            }
+            .btn-group>.btn:first-child {
+                margin-left: 95px; 
+                }
+            .center {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 50%;
+            }
+            
+            .baseBlock {
+                overflow: hidden !important;
+                margin: 0px 0px 35px 0px;
+                padding: 0 0 15px 0px;
+                border-radius: 5px;
+                background: #fff;
+                -moz-transition: all 0.3s cubic-bezier(0.4, 0, 1, 1);
+                -o-transition: all 0.3s cubic-bezier(0.4, 0, 1, 1);
+                transition: all 0.3s cubic-bezier(0.4, 0, 1, 1);
+            }
+
+            .baseBlock:hover {
+                background-color: #EFECEB;
+                border:1px  rgb(15, 15, 15);
+                -webkit-transform: translate(0, -8px);
+                -moz-transform: translate(0, -8px);
+                -ms-transform: translate(0, -8px);
+                -o-transform: translate(0, -8px);
+                transform: translate(0, -8px);
+                box-shadow: 0 40px 40px rgba(0, 0, 0, 0.2);
+            }
+            audio{
+                width:250px;
+                margin-left:15px;
+            }
+            .p{
+                display:inline;
+                padding:5px;
+                word-wrap: break-word;
+                }
+            .dropdown{
+            padding:4px;
+            }
+            .dropdown-menu {
+                box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15)!important;
+                margin-top:0px !important;
+                width:50% !important;
+            }
+            .dropdown .btn:hover {background: cyan; color:#000;}
+
+        </style>
+{% include 'messages.html' %}
+<div class="container">
+        <h1 class="second"><span>All songs</span></h1>
+        
+            
+            {% for song in song_list.object_list %}       
+                  
+                <div class="col-md-4 m-4">
+                    <div class="card baseBlock" style="width: 28rem;">
+                    <img class="card-img-top p-1 mt-3 center" src="{{ song.album_image_link.url }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title text-center"><b>Album  -  <a href="../album_view_songs/{{ song.album_name }}">{{ song.album_name }}</a></b></h5>
+                            <p class="card-text text-center">Song -  {{ song.song_name }}</p>
+                            <!--<p class="text-center"><a class="fa fa-heart p" onclick="myFunction()" href="/addfavourite/{{song.id}}"></a>-->
+                            <!--<a class="fa fa-arrows p" href="/addfavourite/{{song.id}}"></a></p>-->
+                            <div class="btn-group">
+                            <button type="button" class="btn btn-light text-center">
+                                <a class="fa fa-heart p" style ="max-width: 23px;max-height: 23px;" onclick="myFunction()" href="/addfavourite/{{song.id}}"></a>
+								  </button>
+								  <button type="button" class="btn btn-light " style ="max-width: 45px;max-height: 34px;"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <img style ="max-width: 22px;max-height: 22px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAEJwAABCcB2U8dgAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAInSURBVHic7d2xbRtBEEbhf4zrwLEbcGIzcyECDLgC9qDU6kHuwcXQIWMqlGOH40BMFO7hyAX53gdcuLhZ4IEbEHdX3R1xfZg9gOYyADgDgDMAOAOAMwA4A4AzADgDgDMAOAOAMwA4A4AzADgDgDMAOAOAMwC4SnKYPcSNOXb399lDbGVJ8mX2EJrHIwDOAOAMAM4A4AwAzgDgDADOAOAMAM4A4AwArnw/AJu/AHAGAGcAcAYAZwBwBgBnAHAGAGcAcAYAZwBwleTr7CFuzL/uPo4sqKqPST4N3ufU3X8H16zSXkPXobszciXZr7jPfvQ+ay6PADgDgDMAOAOAMwA4A4AzADgDgDMAOAOAMwC4Jcmv2UPcmNPsAba0dPd+9hCaxyMAzgDgDADOAOAMAM4A4AwAzgDgDADOAOAMAG6pqufZQ2zoZ3e/jCy40v4/r1jzo6ou/tRW5e0plHux6+6hbyBV1T3tf5hHAJwBwBkAnAHAGQCcAcAZAJwBwBkAnAHAGQDckmQ3e4gNDb2+7ewa+39I8ji45inJ7wvM8s4y+ufJvbnG/qvq24plL9eYzSMAzgDgDADOAOAMAM4A4AwAzgDgDADOAOAMAM4A4AwAzgDgDADOAOAMAM4A4AwAzgDgDADOAOAMAG6ZPQDEa5I/K9ZcXJ2/by8ojwA4A4AzADgDgDMAOAOAMwA4A4AzADgDgDMAOAOAMwA4A4AzADgDgDMAOAOA+w+pFASr21k+agAAAABJRU5ErkJggg==" />
+								  </button>
+                                      <div class="dropdown-menu text-center ml-4">
+                                        {% for item in playlists %}
+                                           <div class="dropdown-item"> <a href="/addsong_to_playlist/{{ item.playlist_name }}/{{ song.id }}/">{{ item.playlist_name }}</a></div>
+                                        {% endfor %}
+                                        <div class="dropdown-divider" style="color: blue;"></div>
+                                            <div class="dropdown-item">
+                                                  <form method="post">
+                                                      {% csrf_token %}
+                                                      <div class="input-group">
+                                                          {{ form.playlistname }}<input  type="hidden" name="song" value="{{ song.id }}" ><input type="submit" value="->">
+                                                      </div>
+                                                  </form>
+                                            </div>
+                                      </div>
+								</div>
+                            <audio controls >
+                                <source src="{{ song.upload_file.url }}" type="audio/ogv">
+                                <source src="{{ song.upload_file.url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Song Added to Favorities</h2>
+    </div>
+
+  </div>
+                </div>
+
+
+
+            {% endfor%}
+            </div>            
+        </div>
+        <hr/>
+        <center>
+            {%if song_list.has_previous %} {# whether the previous page exists #}
+            <a style="color: #fff;" href="?page={{song_list.previous_page_number}}">
+                < </a> {# link to the prev page #}
+                    {% endif %}
+                    <span style="color:#fff;">{{song_list.number}}</span> {# the current page number #}
+        
+                    {%if song_list.has_next %} {# whether the next page exists #}
+                    <a style="color: #fff;" href="?page={{song_list.next_page_number}}">></a> {# link to the next page #}
+                    {% endif %}
+        </center>
+  <script>
+function myFunction() {
+  alert("Song Added to My Favourites..!");
+}
+</script>
+<script>
+    setTimeout(function(){
+      if ($('#msg').length > 0) {
+        $('#msg').remove();
+      }
+    }, 2000)
+  </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        {% endblock userbody %}
